@@ -5,7 +5,7 @@ import { Post } from '../types/Post';
 import { User } from '../types/User';
 import { addComment, deleteComment, getComments } from '../api/comments';
 import { Comment as PostComment } from '../types/Comment';
-import { CommnetComponent } from './CommentComponent';
+import { CommentComponent } from './CommentComponent';
 
 interface Props {
   selectedPost: Post;
@@ -29,7 +29,6 @@ export const PostDetails: React.FC<Props> = React.memo(({ selectedPost }) => {
       );
     } catch (error) {
       setErrorMessage('Failed to delete comment');
-      throw error;
     }
   }, []);
 
@@ -43,7 +42,6 @@ export const PostDetails: React.FC<Props> = React.memo(({ selectedPost }) => {
       setComments(currentComments => [...currentComments, response]);
     } catch (error) {
       setErrorMessage('Something went wrong!');
-      throw error;
     } finally {
       clearTimeout(delayTimer);
       setTimeout(() => setLoading(false), 500);
@@ -56,9 +54,8 @@ export const PostDetails: React.FC<Props> = React.memo(({ selectedPost }) => {
 
     getComments(selectedPost.id)
       .then(setComments)
-      .catch(error => {
+      .catch(() => {
         setErrorMessage('Something went wrong!');
-        throw error;
       })
       .finally(() => {
         clearTimeout(delayTimer);
@@ -99,7 +96,7 @@ export const PostDetails: React.FC<Props> = React.memo(({ selectedPost }) => {
           {!loading &&
             Boolean(comments.length) &&
             comments.map(comment => (
-              <CommnetComponent
+              <CommentComponent
                 key={comment.id}
                 comment={comment}
                 handleDelete={handleDelete}

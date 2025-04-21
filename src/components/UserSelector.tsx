@@ -14,11 +14,7 @@ export const UserSelector: React.FC<Props> = React.memo(
     const [menuActive, setMenuActive] = useState<boolean>(false);
 
     useEffect(() => {
-      getUsers()
-        .then(setUsers)
-        .catch(error => {
-          throw error;
-        });
+      getUsers().then(setUsers);
     }, []);
 
     const handleSelectUser = useCallback(

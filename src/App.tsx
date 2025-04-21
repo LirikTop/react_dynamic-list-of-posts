@@ -36,7 +36,7 @@ export const App = () => {
         setPosts(response);
       } catch (error) {
         setErrorMessage('Something went wrong!');
-        throw error;
+        // throw error;
       } finally {
         clearTimeout(delayTimer);
         setTimeout(() => setLoading(false), 500);

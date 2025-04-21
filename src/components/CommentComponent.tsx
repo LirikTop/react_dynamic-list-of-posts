@@ -7,7 +7,7 @@ interface Props {
   handleDelete: (deleteId: number) => Promise<void>;
 }
 
-export const CommnetComponent: React.FC<Props> = React.memo(
+export const CommentComponent: React.FC<Props> = React.memo(
   ({ comment, handleDelete }) => {
     const { name, email, body } = comment;
 
@@ -37,4 +37,4 @@ export const CommnetComponent: React.FC<Props> = React.memo(
   },
 );
 
-CommnetComponent.displayName = 'CommnetComponent';
+CommentComponent.displayName = 'CommentComponent';
